@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import JobCard from "./JobCard";
 import Spinner from "./Spinner";
+import JobsService, { BASE_URL } from "../service/jobsService";
+import { FetchClient } from "../service/fetchClient";
 
 const JobListings = ({viewAllJobs=false}) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const apiUrl = !viewAllJobs ? '/api/jobs?_limit=3' : '/api/jobs'
+    const apiUrl = !viewAllJobs ? `${BASE_URL}?_limit=3` : BASE_URL
+    const jobService = new JobsService(FetchClient)
     const fetchJobs = async () => {
       try {
-        const res = await fetch(apiUrl);
-        const data = await res.json();
-        setJobs(data);
+        const jobs = await jobService.getjobs(apiUrl)
+        setJobs(jobs);
       } catch (error) {
         console.log('Error fetching data', error)
       } finally {

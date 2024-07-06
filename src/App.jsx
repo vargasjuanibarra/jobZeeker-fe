@@ -7,38 +7,23 @@ import Notfound from "./pages/Notfound.page";
 import JobPage from "./pages/Job.page";
 import AddJobPage from "./pages/AddJob.page";
 import EditJobpage from "./pages/EditJob.page";
-import { jobLoader } from "./components/loaderData";
+import { jobLoader } from "./data/loaderData";
+import JobsService from "./service/jobsService";
+import { FetchClient } from "./service/fetchClient";
 
 const App = () => {
-  
+const jobService = new JobsService(FetchClient)
+
 const addJob = async (newJob) => {
-  // Adding new job
-  await fetch('/api/jobs', {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json'
-    },
-    body: JSON.stringify(newJob)
-  });
-  return;
+  await jobService.createJob(newJob)
 }
 
 const updateJob = async (updatedJob) => {
-  await fetch(`/api/jobs/${updatedJob.id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-type': 'application/json'
-    },
-    body: JSON.stringify(updatedJob)
-  });
-  return;
+  await jobService.updateJob(updatedJob)
 }
 
 const deleteJob = async(jobId) => {
-  await fetch(`/api/jobs/${jobId}`, {
-    method: 'DELETE'
-  })
-  return
+  await jobService.deleteJob(jobId)
 }
 
 const router = createBrowserRouter(
