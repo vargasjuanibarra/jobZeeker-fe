@@ -34,7 +34,7 @@ const Navbar = () => {
                   className="text-white bg-emerald-400 px-6 py-2 hover:bg-gray-400 hover:text-white md:rounded-full"
                   >Find Jobs</NavLink>
                 <NavLink
-                  to="/jobs"
+                  to="/talents"
                   className="text-white bg-stone-400 px-6 py-2 hover:bg-gray-400 hover:text-white md:rounded-full"
                   >Find Talents</NavLink>
                 <NavLink
