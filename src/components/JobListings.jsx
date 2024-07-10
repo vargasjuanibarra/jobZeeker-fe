@@ -7,12 +7,13 @@ import SearchInput from "./SearchInput";
 import Filters from "./Filters";
 
 const JobListings = ({viewAllJobs=false}) => {
+  const jobService = new JobsService(FetchClient)
+
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const apiUrl = !viewAllJobs ? `${BASE_URL}?_limit=3` : BASE_URL
-    const jobService = new JobsService(FetchClient)
     const fetchJobs = async () => {
       try {
         const jobs = await jobService.getjobs(apiUrl)
@@ -26,6 +27,12 @@ const JobListings = ({viewAllJobs=false}) => {
     fetchJobs();
   }, [])
 
+  const jobSearch = async(searchTerm) => {
+  const filteredSearchJobs = await jobService.jobSearch(searchTerm);
+  setJobs(filteredSearchJobs)
+  }
+
+
   return (
     <section className="bg-stone-50 bg-opacity-75 px-4 py-10">
     <div className="container-xl lg:container m-auto">
@@ -35,7 +42,7 @@ const JobListings = ({viewAllJobs=false}) => {
         {loading ? (<Spinner loading={loading}/>) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <SearchInput />
+            <SearchInput jobSearchInput={jobSearch}/>
             
             <div className="gap-3 md:flex flex-cols-2">
               <Filters />

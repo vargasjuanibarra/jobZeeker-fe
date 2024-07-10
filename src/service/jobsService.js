@@ -41,6 +41,18 @@ class JobsService {
             console.error('Error on deleting job');
         }
     }
+
+    async jobSearch(searchTerm) {
+        try {
+            if(!searchTerm) {
+                return this.getjobs(BASE_URL);
+            }
+            const response = await this.httpClient.get(`${BASE_URL}/search/${searchTerm}`);
+            return response.json();
+        } catch (error) {
+            console.error('Error on searching job');
+        }
+    }
 }
 
 export default JobsService
