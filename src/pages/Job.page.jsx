@@ -45,7 +45,7 @@ const Jobpage = ({ removeJob }) => {
         <div className="m-auto py-6 px-6">
             <Link
             to="/jobs"
-            className="text-gray-500 hover:text-gray-800 flex items-center"
+            className="text-orange-500 hover:text-gray-800 flex items-center"
             >
             <FaArrowLeft className="mr-2" /> Back to Job Listings
             </Link>
@@ -121,9 +121,9 @@ const Jobpage = ({ removeJob }) => {
 
             <aside>
                 <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold mb-6">Company Info</h3>
+                <h3 className="text-md font-bold mb-6 text-gray-500">COMPANY INFO</h3>
 
-                <h2 className="text-2xl">{job.company.name}</h2>
+                <h2 className="text-2xl font-semibold">{job.company.name}</h2>
 
                 <p className="my-2">
                     {job.company.description}
@@ -131,30 +131,30 @@ const Jobpage = ({ removeJob }) => {
 
                 <hr className="my-4" />
 
-                <p className="text-md">EMAIL:</p>
+                {/* <p className="text-md">EMAIL:</p> */}
 
-                <p className="my-2 bg-gray-100 p-2 font-bold">
+                <p className="my-2 bg-gray-100 p-2 font-bold text-wrap overflow-hidden">
                     {job.company.contactEmail}
                 </p>
 
-                <h3 className="text-md">PHONE:</h3>
+                {/* <h3 className="text-md">PHONE:</h3> */}
 
                 <p className="my-2 bg-gray-100 p-2 font-bold">{job.company.contactPhone}</p>
                 </div>
 
-                <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-                <h3 className="text-xl font-bold mb-6">Manage Job</h3>
-                <Link
-                    to={`/edit-job/${job.id}`}
-                    className="bg-amber-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                    >Edit Job</Link
-                >
-                <button
-                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                    onClick={() => onDeleteJob(job.id)}
-                >
-                    Delete Job
-                </button>
+                <div className="bg-white p-6 rounded-lg shadow-md mt-6 hidden">
+                    <h3 className="text-xl font-bold mb-6">Manage Job</h3>
+                    <Link
+                        to={`/edit-job/${job.id}`}
+                        className="bg-amber-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+                        >Edit Job</Link
+                    >
+                    <button
+                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+                        onClick={() => onDeleteJob(job.id)}
+                    >
+                        Delete Job
+                    </button>
                 </div>
             </aside>
             </div>

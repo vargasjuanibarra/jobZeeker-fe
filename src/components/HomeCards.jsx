@@ -4,7 +4,7 @@ import Card from "./Card";
 const HomeCards = () => {
     const cardContents = [
         {id: 1, title: 'Looking for', topic: ' Work?', textColor: 'text-stone-400', subtitle: 'Browse our React jobs and start your career today', color: 'bg-stone-100', button: 'Search Jobs', btnColor: 'bg-stone-600', link: '/jobs'},
-        {id: 2, title: 'Looking for', topic: ' Talent?', textColor: 'text-emerald-400', subtitle: 'List your job to find the perfect developer for the role', color: 'bg-emerald-50', button: 'Search Talent', btnColor: 'bg-emerald-400', link: '/add-job'},
+        {id: 2, title: 'Looking for', topic: ' Talent?', textColor: 'text-emerald-400', subtitle: 'List your job to find the perfect developer for the role', color: 'bg-emerald-50', button: 'Search Talent', btnColor: 'bg-emerald-400', link: '/talents'},
     ]
   return (
     <section className="py-4">
