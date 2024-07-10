@@ -38,13 +38,13 @@ const AddJobpage = ({ addJobSubmit }) => {
     }
 
   return (
-    <section className="bg-indigo-50">
+    <section className="">
       <div className="container m-auto max-w-2xl py-24">
         <div
-          className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
+          className="bg-white bg-opacity-70 px-6 py-8 mb-4 shadow-xl rounded-md m-4 md:m-0"
         >
           <form onSubmit={submitForm}>
-            <h2 className="text-3xl text-center font-semibold mb-6">Add Job</h2>
+            {/* <h2 className="text-3xl text-center font-semibold mb-6">Add Job</h2> */}
 
             <div className="mb-4">
               <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
@@ -209,7 +209,7 @@ const AddJobpage = ({ addJobSubmit }) => {
 
             <div>
               <button
-                className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
+                className="bg-emerald-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Add Job

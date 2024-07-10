@@ -10,6 +10,8 @@ import EditJobpage from "./pages/EditJob.page";
 import { jobLoader } from "./data/loaderData";
 import JobsService from "./service/jobsService";
 import { FetchClient } from "./service/fetchClient";
+import Loginpage from "./pages/Login.page";
+import Signuppage from "./pages/Signup.page";
 
 const App = () => {
 const jobService = new JobsService(FetchClient)
@@ -35,6 +37,8 @@ const router = createBrowserRouter(
       <Route path="/jobs/:id" element={<JobPage removeJob={deleteJob}/>} loader={jobLoader} />
       <Route path="/add-job" element={<AddJobPage addJobSubmit={addJob}/>} />
       <Route path="/edit-job/:id" element={<EditJobpage updateJobSubmit={updateJob}/>} loader={jobLoader}/>
+      <Route path="/login/" element={<Loginpage />} />
+      <Route path="/register/" element={<Signuppage />} />
     </Route>
   )
   );

@@ -3,7 +3,7 @@ import JobListings from "../components/JobListings";
 
 const Jobspage = () => {
   return (
-  <section className="bg-blue-50 px-4 py-6">
+  <section className="px-4 py-6 max-w-[1200px] mx-auto">
     <JobListings viewAllJobs={true}/>
   </section>
   )

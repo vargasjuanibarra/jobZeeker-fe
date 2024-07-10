@@ -3,6 +3,8 @@ import JobCard from "./JobCard";
 import Spinner from "./Spinner";
 import JobsService, { BASE_URL } from "../service/jobsService";
 import { FetchClient } from "../service/fetchClient";
+import SearchInput from "./SearchInput";
+import Filters from "./Filters";
 
 const JobListings = ({viewAllJobs=false}) => {
   const [jobs, setJobs] = useState([]);
@@ -25,26 +27,33 @@ const JobListings = ({viewAllJobs=false}) => {
   }, [])
 
   return (
-    <section className="bg-blue-50 px-4 py-10">
+    <section className="bg-stone-50 bg-opacity-75 px-4 py-10">
     <div className="container-xl lg:container m-auto">
-      <h2 className="text-3xl font-bold text-indigo-500 mb-6 text-center">
-       {!viewAllJobs ? 'Recent Jobs' : 'All Jobs'}
+      <h2 className="text-3xl font-bold text-black mb-6 text-center">
+       {!viewAllJobs ? 'Recent Posted Jobs' : ''}
       </h2>
         {loading ? (<Spinner loading={loading}/>) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              { jobs.map((job) => (
-                  <JobCard 
-                      key={job.id}
-                      id={job.id}
-                      jobtype={job.type}
-                      jobtitle={job.title}
-                      jobdescription={job.description}
-                      salary={job.salary}
-                      location={job.location}
-                      company={job.company}
-                  />
-                ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <SearchInput />
+            
+            <div className="gap-3 md:flex flex-cols-2">
+              <Filters />
+              <div className="flex flex-col gap-4">
+                { jobs.map((job) => (
+                    <JobCard 
+                        key={job.id}
+                        id={job.id}
+                        jobtype={job.type}
+                        jobtitle={job.title}
+                        jobdescription={job.description}
+                        salary={job.salary}
+                        location={job.location}
+                        company={job.company}
+                    />
+                  ))}
+              </div>
+              </div>
             </div>
           </>
         ) }
