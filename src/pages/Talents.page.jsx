@@ -28,7 +28,7 @@ const Talentspage = () => {
     }, [])
   
     return (
-      <section className="bg-stone-50 bg-opacity-75 px-4 py-2 lg:max-w-[1200px] mx-auto my-20">
+      <section className="bg-stone-50 bg-opacity-75 px-4 py-2 lg:max-w-[1200px] mx-auto my-10 lg:my-20">
         <div className="container-xl lg:container m-auto">
         <h2 className="text-3xl font-bold text-black mb-6 text-center">
         </h2>
