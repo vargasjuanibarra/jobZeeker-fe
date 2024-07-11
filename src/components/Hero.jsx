@@ -1,14 +1,16 @@
 import React from "react";
+import HomeCards from "./HomeCards";
 
 const Hero = ({title='Default Prop Title', subTitle='default subtitle'}) => {
   return (
-    <section className=" py-20 mb-4">
+    <>
+    <section className="mt-16 mb-4">
       <div
-        className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center"
+        className=" mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center"
       >
         <div className="text-center">
           <h1
-            className="text-3xl font-extrabold text-black sm:text-5xl md:text-6xl"
+            className="text-3xl font-extrabold text-black md:text-4xl lg:text-5xl xl:text-6xl"
           >
             {title}
           </h1>
@@ -17,7 +19,10 @@ const Hero = ({title='Default Prop Title', subTitle='default subtitle'}) => {
           </p>
         </div>
       </div>
+      <HomeCards />
     </section>
+    </>
+
   );
 };
 

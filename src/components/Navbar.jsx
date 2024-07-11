@@ -4,22 +4,22 @@ import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const linkClass = 'text-black px-3 py-2 hover:text-black md:rounded-md'
+  const linkClass = 'text-black px-3 py-2 hover:text-black hover:bg-orange-500 md:rounded-md'
 
   const toggleNavigations = () => {
     setToggle(!toggle);
   }
   return (
     <>
-    <nav className="border border-b-gray-200 relative shadow-lg">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+    <nav className="border border-b-gray-200 bg-white bg-opacity-65 z-[500] fixed top-0 left-0  w-full shadow-lg">
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 relative">
+        <div className="flex h-10 md:h-12 lg:h-16 items-center justify-between">
           <div
             className="flex flex-1 justify-between items-center md:justify-center md:items-stretch md:justify-start"
           >
             {/* <!-- Logo --> */}
             <NavLink className="flex flex-shrink-0 md:items-center mr-4" to="/">
-              <span className="text-start text-black text-2xl font-bold ml-2 italic "
+              <span className="text-start text-black text-lg lg:text-2xl font-bold ml-2 italic "
                 >Job<span className="not-italic text-emerald-400">Zeek</span></span
               >
             </NavLink>
@@ -65,8 +65,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </nav>
-    <div className={'absolute right-0 border border-gray-200 w-64 md:hidden bg-white z-[50] ' + (toggle ? 'block' : 'hidden')}>
+      <div className={'absolute right-0 border border-gray-200 w-64 md:hidden bg-white z-[50] ' + (toggle ? 'block' : 'hidden')}>
       <div className="grid grid-col">
         <NavLink
           to="/"
@@ -77,9 +76,9 @@ const Navbar = () => {
           className={linkClass}
           >Jobs</NavLink>
         <NavLink
-          to="/add-job"
+          to="/talents"
           className={linkClass}
-          >Add Job</NavLink
+          >Find Talents</NavLink
         >
         <NavLink
           to="/login"
@@ -92,6 +91,8 @@ const Navbar = () => {
         </NavLink>
       </div>
     </div>
+    </nav>
+    
     </>
     
   );

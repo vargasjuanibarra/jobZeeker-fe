@@ -7,9 +7,9 @@ const HomeCards = () => {
         {id: 2, title: 'Looking for', topic: ' Talent?', textColor: 'text-emerald-400', subtitle: 'List your job to find the perfect developer for the role', color: 'bg-emerald-50', button: 'Search Talent', btnColor: 'bg-emerald-400', link: '/talents'},
     ]
   return (
-    <section className="py-4">
+    <section className="mx-2 md:mx-4">
       <div className="container-xl lg:container m-auto">
-        <div className="grid gap-4 p-4 rounded-lg md:flex md:justify-between">
+        <div className="bg-slate-200 rounded-lg sm:flex justify-between">
             {cardContents.map((content) => (
                 <Card 
                 key={content.id} 
