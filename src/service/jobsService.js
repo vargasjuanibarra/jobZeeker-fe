@@ -42,12 +42,12 @@ class JobsService {
         }
     }
 
-    async jobSearch(searchTerm) {
+    async jobSearch(searchTerm, jobTypes) {
         try {
-            if(!searchTerm) {
+            if(!searchTerm && !jobTypes) {
                 return this.getjobs(BASE_URL);
             }
-            const response = await this.httpClient.get(`${BASE_URL}/search/${searchTerm}`);
+            const response = await this.httpClient.get(`${BASE_URL}/search?searchTerm=${searchTerm}&jobTypes=${jobTypes}`);
             return response.json();
         } catch (error) {
             console.error('Error on searching job');

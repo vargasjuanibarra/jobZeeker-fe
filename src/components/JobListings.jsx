@@ -5,11 +5,13 @@ import JobsService, { BASE_URL } from "../service/jobsService";
 import { FetchClient } from "../service/fetchClient";
 import SearchInput from "./SearchInput";
 import Filters from "./Filters";
+import NoResultsFound from "./NoResultsFound";
 
 const JobListings = ({viewAllJobs=false}) => {
   const jobService = new JobsService(FetchClient)
 
   const [jobs, setJobs] = useState([]);
+  const [jobTypes, setJobTypes] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,8 +29,12 @@ const JobListings = ({viewAllJobs=false}) => {
     fetchJobs();
   }, [])
 
+  const filters = (jobTypes) => {
+    setJobTypes(jobTypes)
+  }
+
   const jobSearch = async(searchTerm) => {
-  const filteredSearchJobs = await jobService.jobSearch(searchTerm);
+  const filteredSearchJobs = await jobService.jobSearch(searchTerm, jobTypes.join(','));
   setJobs(filteredSearchJobs)
   }
 
@@ -45,9 +51,9 @@ const JobListings = ({viewAllJobs=false}) => {
             <SearchInput jobSearchInput={jobSearch}/>
             
             <div className="gap-3 md:flex flex-cols-2">
-              <Filters />
-              <div className="flex flex-col gap-4">
-                { jobs.map((job) => (
+              <Filters selectedFilters={filters}/>
+              <div className="flex flex-col gap-4 w-full">
+                { jobs.length > 0 ? jobs.map((job) => (
                     <JobCard 
                         key={job.id}
                         id={job.id}
@@ -58,7 +64,9 @@ const JobListings = ({viewAllJobs=false}) => {
                         location={job.location}
                         company={job.company}
                     />
-                  ))}
+                  )) : 
+                    <NoResultsFound />
+                  }
               </div>
               </div>
             </div>
