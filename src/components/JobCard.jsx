@@ -14,7 +14,7 @@ const JobCard = ({id, jobtype, jobtitle, jobdescription, salary, location, compa
     <Link
     to={`/jobs/${id}`}
 >
-    <div className="bg-white rounded-xl shadow-md relative hover:shadow-xl">
+    <div className="bg-white rounded-lg shadow-md relative hover:shadow-xl">
         <div className="p-4">
             <div className="mb-6">
                 <h3 className="text-xl font-bold">{jobtitle}
