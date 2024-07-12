@@ -8,7 +8,9 @@ const Mainlayout = () => {
   return (
     <>
         <Navbar />
-        <Outlet />
+        <div className="container mx-auto ">
+          <Outlet />
+        </div>
         <ToastContainer />
     </>
   );

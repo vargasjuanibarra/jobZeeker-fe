@@ -4,7 +4,7 @@ const Signuppage = () => {
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();
   return (
-    <section className="text-center flex flex-col justify-center items-center w-[350px] md:w-[400px] mx-auto my-10 lg:my-20">
+    <section className="text-center flex flex-col justify-center items-center w-[350px] md:w-[400px] mx-auto sm:my-10 h-screen sm:h-auto md:h-auto lg:h-screen lg:my-0">
     {/* <FaExclamationTriangle className="text-6xl text-yellow-400 fa-4x mb-4" /> */}
     <div className="flex items-center pt-8 pb-4 mt-8 mb-4">
         <h1 className="text-lg font-semibold">Signup | </h1>
@@ -79,7 +79,7 @@ const Signuppage = () => {
       >
     </div>
     <div className="text-xs sm:text-sm px-4 my-4 bg-gray-50 bg-opacity-70 w-full py-4 text-gray-500 shadow-lg bg-opacity-65">
-      <p>Already have an account? Click here to login.</p>
+      <p>Already have an account? <span className="text-orange-500 hover:text-orange-600 cursor-pointer hover:font-semibold">Click here to login.</span></p>
     </div>
 
   </section>
