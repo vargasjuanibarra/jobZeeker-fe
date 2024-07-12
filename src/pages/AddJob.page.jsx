@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import BackNavigationButton from "../components/BackNavigationButton";
 
 const AddJobpage = ({ addJobSubmit }) => {
     const [type, setType] = useState('Full-Time');
@@ -38,14 +39,15 @@ const AddJobpage = ({ addJobSubmit }) => {
     }
 
   return (
-    <section className="">
-      <div className="container m-auto max-w-2xl py-24">
+    <div className="max-w-[1200px] mx-auto my-10 lg:my-20">
+        <BackNavigationButton link="/jobs" btnLabel="Job Listing"/>
+
+        <section className="bg-stone-50 bg-opacity-75">
+        <div className="container m-auto py-10 px-6">
         <div
-          className="bg-white bg-opacity-70 px-6 py-8 mb-4 shadow-xl rounded-md m-4 md:m-0"
+          className="bg-white bg-opacity-70 px-6 py-8 mb-4 shadow-md rounded-lg m-4 md:m-0"
         >
           <form onSubmit={submitForm}>
-            {/* <h2 className="text-3xl text-center font-semibold mb-6">Add Job</h2> */}
-
             <div className="mb-4">
               <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
                 >Job Type</label
@@ -139,8 +141,6 @@ const AddJobpage = ({ addJobSubmit }) => {
               />
             </div>
 
-            <h3 className="text-2xl mb-5">Company Info</h3>
-
             <div className="mb-4">
               <label htmlFor="company" className="block text-gray-700 font-bold mb-2"
                 >Company Name</label
@@ -209,7 +209,7 @@ const AddJobpage = ({ addJobSubmit }) => {
 
             <div>
               <button
-                className="bg-emerald-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
+                className="bg-emerald-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-md w-full focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Add Job
@@ -219,6 +219,7 @@ const AddJobpage = ({ addJobSubmit }) => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

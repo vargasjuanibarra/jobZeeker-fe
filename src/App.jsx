@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, useParams, Navigate } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
 import Mainlayout from './layouts/Main.layout'
@@ -43,7 +43,7 @@ const router = createBrowserRouter(
       <Route path="/jobs" element={<Jobspage />} />
       <Route path="/talents" element={<Talentspage />} />
       <Route path="*" element={<Navigate to="/" />} />
-      <Route path="/jobs/:id" element={<JobPage removeJob={deleteJob}/>} loader={jobLoader} />
+      <Route path="/jobs/:id" element={<JobPage removeJob={deleteJob} userAdmin={parseToJson(userAdmin)}/>} loader={jobLoader} />
       
 
       {(!parseToJson(user) && !parseToJson(accessToken)) && (
@@ -59,17 +59,17 @@ const router = createBrowserRouter(
       <Route element={<ProtectedRoute />}>
         <Route path="/login" element={<Navigate to="/" />} />
         <Route path="/register" element={<Navigate to="/" />} />
-        <Route path="/edit-job/:id" element={<EditJobpage updateJobSubmit={updateJob}/>} loader={jobLoader}/>
         {!parseToJson(userAdmin) ? (
-        <>
+          <>
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/" element={<Navigate to="/profile" />} />
 
         </>
       ) : (
         <>
+          <Route path="/edit-job/:id" element={<EditJobpage updateJobSubmit={updateJob}/>} loader={jobLoader}/>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/add-job" element={<AddJobPage />} />
+          <Route path="/add-job" element={<AddJobPage addJobSubmit={addJob}/>} />
           <Route path="/" element={<Navigate to="/admin-dashboard" />} />
         </>
       )}

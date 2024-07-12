@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import BackNavigationButton from "../components/BackNavigationButton";
 
 const EditJobpage = ({updateJobSubmit}) => {
     const job = useLoaderData();
@@ -15,11 +16,10 @@ const EditJobpage = ({updateJobSubmit}) => {
     const [contactPhone, setContactPhone] = useState(job.company.contactPhone);
 
     const navigate = useNavigate();
-    const { id } = useParams()
     const submitForm = (event) => {
       event.preventDefault();
       const updatedJob = {
-        id,
+        id: job.id,
         type,
         title,
         description,
@@ -35,19 +35,20 @@ const EditJobpage = ({updateJobSubmit}) => {
 
       updateJobSubmit(updatedJob);
       toast.success('Job updated successfully')
-      return navigate(`/jobs/${id}`)
+      return navigate(`/jobs/${job.id}`)
     }
 
   return (
     <>
-        <section className="bg-indigo-50">
-      <div className="container m-auto max-w-2xl py-24">
+      <div className="max-w-[1200px] mx-auto my-10 lg:my-20">
+        <BackNavigationButton link={`/jobs/${job.id}`} btnLabel="Job"/>
+
+        <section className="bg-stone-50 bg-opacity-75">
+        <div className="container m-auto py-10 px-6">
         <div
-          className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
+          className="bg-white bg-opacity-70 px-6 py-8 mb-4 shadow-md rounded-lg m-4 md:m-0"
         >
           <form onSubmit={submitForm}>
-            <h2 className="text-3xl text-center font-semibold mb-6">Edit Job</h2>
-
             <div className="mb-4">
               <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
                 >Job Type</label
@@ -211,7 +212,7 @@ const EditJobpage = ({updateJobSubmit}) => {
 
             <div>
               <button
-                className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
+                className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-lg w-full focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Update Job
@@ -221,6 +222,7 @@ const EditJobpage = ({updateJobSubmit}) => {
         </div>
       </div>
     </section>
+    </div>
     </>
   );
 };
