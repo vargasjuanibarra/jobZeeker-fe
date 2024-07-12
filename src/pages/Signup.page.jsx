@@ -4,7 +4,7 @@ const Signuppage = () => {
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();
   return (
-    <section className="text-center flex flex-col justify-center items-center w-[350px] md:w-[400px] mx-auto">
+    <section className="text-center flex flex-col justify-center items-center w-[350px] md:w-[400px] mx-auto my-10 lg:my-20">
     {/* <FaExclamationTriangle className="text-6xl text-yellow-400 fa-4x mb-4" /> */}
     <div className="flex items-center pt-8 pb-4 mt-8 mb-4">
         <h1 className="text-lg font-semibold">Signup | </h1>

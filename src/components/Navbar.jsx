@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
+import { navigateWindowLocation, parseToJson } from "../utils/parseJSON.utils";
 
 const Navbar = () => {
   const user = window.localStorage.getItem('user');
   const accessToken = window.localStorage.getItem('accessToken');
-  const userPrivilege = window.localStorage.getItem('userPrivilege');
-
-  const navigate = useNavigate();
+  const userAdmin = window.localStorage.getItem('userAdmin');
 
   const [toggle, setToggle] = useState(false);
-  const linkClass = 'text-black px-3 py-2 hover:text-black hover:bg-orange-500 md:rounded-md '
+  const linkClass = 'text-black px-3 py-2 hover:text-orange-500 md:rounded-md '
 
   const toggleNavigations = () => {
     setToggle(!toggle);
   }
 
   const logoutUser = () => {
+    console.log('logout');
     window.localStorage.clear();
-    navigate('/login');
-  
+    navigateWindowLocation("/login")
   }
+
   return (
     <>
     <nav className="border border-b-gray-200 bg-white bg-opacity-65 z-[500] fixed top-0 left-0  w-full shadow-lg">
@@ -29,7 +29,6 @@ const Navbar = () => {
           <div
             className="flex flex-1 justify-between items-center md:justify-center md:items-stretch md:justify-start"
           >
-            {/* <!-- Logo --> */}
             <NavLink className="flex flex-shrink-0 md:items-center mr-4" to="/">
               <span className="text-start text-black text-lg lg:text-2xl font-bold ml-2 italic "
                 >Job<span className="not-italic text-emerald-400">Ze<span className="text-orange-500 italic">e</span>k</span></span
@@ -37,10 +36,6 @@ const Navbar = () => {
             </NavLink>
             <div className="hidden md:ml-auto md:block">
               <div className="flex space-x-2">
-                {/* <NavLink
-                  to="/"
-                  className={linkClass}
-                  >Home</NavLink> */}
                 <NavLink
                   to="/jobs"
                   className="text-white bg-emerald-400 px-6 py-2 hover:bg-gray-400 hover:text-white md:rounded-full"
@@ -51,7 +46,7 @@ const Navbar = () => {
                   >Find Talents</NavLink>
                 <NavLink
                   to="/add-job"
-                  className={linkClass + (user && accessToken ? 'block' : 'hidden')}
+                  className={linkClass + (user && accessToken && parseToJson(userAdmin) ? 'block' : 'hidden')}
                   >Add Job</NavLink
                 >
                 <div
@@ -90,12 +85,13 @@ const Navbar = () => {
         <NavLink
           to="/jobs"
           className={linkClass}
-          >Jobs</NavLink>
+          >Jobs
+        </NavLink>
         <NavLink
           to="/talents"
           className={linkClass}
-          >Find Talents</NavLink
-        >
+          >Find Talents
+        </NavLink>
         <NavLink
           to="/login"
           className={linkClass}

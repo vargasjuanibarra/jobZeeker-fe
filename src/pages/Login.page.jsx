@@ -1,31 +1,30 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import UserService from "../service/userService";
 import { FetchClient } from "../service/fetchClient";
+import { navigateWindowLocation, parseToJson } from "../utils/parseJSON.utils";
 
 const Loginpage = () => {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
-
-    const navigate = useNavigate();
-
+    
+    
     const userService = new UserService(FetchClient)
-
-  const submitLoginForm = async (event) => {
-    event.preventDefault();
-
-    const userCredentials = {
-      email,
-      password
-    }
-
-    await userService.loginUser(userCredentials)
-    return navigate('/')
-
+    
+    const submitLoginForm = async (event) => {
+      event.preventDefault();
+      
+      const userCredentials = {
+        email,
+        password
+      }
+      
+      await userService.loginUser(userCredentials)
+      const userAdmin = window.localStorage.getItem('userAdmin');
+      parseToJson(userAdmin) ? navigateWindowLocation('/admin-dashboard') : navigateWindowLocation('/profile');
   }
 
   return (
-    <section className="text-center flex flex-col justify-center items-center w-[350px] md:w-[400px] mx-auto">
+    <section className="text-center flex flex-col justify-center items-center w-[350px] md:w-[400px] mx-auto  my-10 lg:my-20">
     {/* <FaExclamationTriangle className="text-6xl text-yellow-400 fa-4x mb-4" /> */}
     <div className="flex items-center pt-8 pb-4 mt-8 mb-4">
         <h1 className="text-lg font-semibold">Login | </h1>
