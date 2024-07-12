@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
-import JobsService, { BASE_URL } from "../service/jobsService";
+import JobsService, { JOBS_URL } from "../service/jobsService";
 import { FetchClient } from "../service/fetchClient";
 import SearchInput from "../components/SearchInput";
 import Filters from "../components/Filters";
@@ -12,7 +12,7 @@ const Talentspage = () => {
     const [loading, setLoading] = useState(true);
   
     useEffect(() => {
-      const apiUrl = BASE_URL
+      const apiUrl = JOBS_URL
       const jobService = new JobsService(FetchClient)
       const fetchJobs = async () => {
         try {

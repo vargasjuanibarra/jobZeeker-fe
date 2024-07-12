@@ -1,8 +1,8 @@
-import { BASE_URL } from "../service/jobsService";
+import { JOBS_URL } from "../service/jobsService";
 
 export const jobLoader = async ({ params }) => {
     try {
-        const res = await fetch(`${BASE_URL}/${params.id}`);
+        const res = await fetch(`${JOBS_URL}/${params.id}`);
         const data = await res.json(); 
         return data;
     } catch (error) {

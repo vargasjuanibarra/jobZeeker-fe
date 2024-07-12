@@ -1,13 +1,25 @@
 import React, { useState } from "react";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
+  const user = window.localStorage.getItem('user');
+  const accessToken = window.localStorage.getItem('accessToken');
+  const userPrivilege = window.localStorage.getItem('userPrivilege');
+
+  const navigate = useNavigate();
+
   const [toggle, setToggle] = useState(false);
-  const linkClass = 'text-black px-3 py-2 hover:text-black hover:bg-orange-500 md:rounded-md'
+  const linkClass = 'text-black px-3 py-2 hover:text-black hover:bg-orange-500 md:rounded-md '
 
   const toggleNavigations = () => {
     setToggle(!toggle);
+  }
+
+  const logoutUser = () => {
+    window.localStorage.clear();
+    navigate('/login');
+  
   }
   return (
     <>
@@ -20,7 +32,7 @@ const Navbar = () => {
             {/* <!-- Logo --> */}
             <NavLink className="flex flex-shrink-0 md:items-center mr-4" to="/">
               <span className="text-start text-black text-lg lg:text-2xl font-bold ml-2 italic "
-                >Job<span className="not-italic text-emerald-400">Zeek</span></span
+                >Job<span className="not-italic text-emerald-400">Ze<span className="text-orange-500 italic">e</span>k</span></span
               >
             </NavLink>
             <div className="hidden md:ml-auto md:block">
@@ -37,23 +49,27 @@ const Navbar = () => {
                   to="/talents"
                   className="text-white bg-stone-400 px-6 py-2 hover:bg-gray-400 hover:text-white md:rounded-full"
                   >Find Talents</NavLink>
-                {/* <NavLink
-                  to="/add-job"
-                  className={linkClass}
-                  >Add Job</NavLink
-                > */}
                 <NavLink
-                  to="#"
-                  className={linkClass}
-                  >|</NavLink
+                  to="/add-job"
+                  className={linkClass + (user && accessToken ? 'block' : 'hidden')}
+                  >Add Job</NavLink
+                >
+                <div
+                  className="text-black px-3 py-2 "
+                  >|</div
                 >
                 <NavLink
                   to="/login"
-                  className={linkClass}
+                  className={linkClass + (!user && !accessToken ? 'block' : 'hidden')}
                   >Login</NavLink>
+                  <NavLink
+                  to="/login"
+                  className={linkClass + (user && accessToken ? 'block' : 'hidden')}
+                  onClick={logoutUser}
+                  >Logout</NavLink>
                 <NavLink
                   to="/register"
-                  className={linkClass}
+                  className={linkClass + (!user && !accessToken ? 'block' : 'hidden')}
                   >Sign up
                 </NavLink>
               </div>

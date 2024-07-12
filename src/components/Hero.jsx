@@ -12,7 +12,7 @@ const Hero = ({title='Default Prop Title', subTitle='default subtitle'}) => {
           <h1
             className="text-3xl font-extrabold text-black md:text-4xl lg:text-5xl xl:text-6xl"
           >
-            {title}
+             The Job Board for <span className="text-orange-500">Virtual</span> Workers
           </h1>
           <p className="my-4 text-xl text-black">
             {subTitle}

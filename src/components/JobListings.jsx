@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import JobCard from "./JobCard";
 import Spinner from "./Spinner";
-import JobsService, { BASE_URL } from "../service/jobsService";
+import JobsService, { JOBS_URL } from "../service/jobsService";
 import { FetchClient } from "../service/fetchClient";
 import SearchInput from "./SearchInput";
 import Filters from "./Filters";
@@ -15,7 +15,7 @@ const JobListings = ({viewAllJobs=false}) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const apiUrl = !viewAllJobs ? `${BASE_URL}?_limit=3` : BASE_URL
+    const apiUrl = !viewAllJobs ? `${JOBS_URL}?_limit=3` : JOBS_URL
     const fetchJobs = async () => {
       try {
         const jobs = await jobService.getjobs(apiUrl)

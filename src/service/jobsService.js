@@ -1,4 +1,4 @@
-export const BASE_URL = '/api/jobs'
+export const JOBS_URL = '/api/jobs'
 
 class JobsService {
 
@@ -17,7 +17,7 @@ class JobsService {
 
     async createJob(job) {
         try {
-            const response = await this.httpClient.post(BASE_URL, job);
+            const response = await this.httpClient.post(JOBS_URL, job);
             return response.json();
         } catch (error) {
             console.error('Error on creating jobs', error)
@@ -26,7 +26,7 @@ class JobsService {
 
     async updateJob(job) {
         try {
-            const response = await this.httpClient.put(`${BASE_URL}/${job.id}`, job);
+            const response = await this.httpClient.put(`${JOBS_URL}/${job.id}`, job);
             return response.json();
         } catch (error) {
             console.error('Error on updating job');
@@ -35,7 +35,7 @@ class JobsService {
 
     async deleteJob(id) {
         try {
-            const response = await this.httpClient.delete(`${BASE_URL}/${id}`);
+            const response = await this.httpClient.delete(`${JOBS_URL}/${id}`);
             return response.json();
         } catch (error) {
             console.error('Error on deleting job');
@@ -45,9 +45,9 @@ class JobsService {
     async jobSearch(searchTerm, jobTypes) {
         try {
             if(!searchTerm && !jobTypes) {
-                return this.getjobs(BASE_URL);
+                return this.getjobs(JOBS_URL);
             }
-            const response = await this.httpClient.get(`${BASE_URL}/search?searchTerm=${searchTerm}&jobTypes=${jobTypes}`);
+            const response = await this.httpClient.get(`${JOBS_URL}/search?searchTerm=${searchTerm}&jobTypes=${jobTypes}`);
             return response.json();
         } catch (error) {
             console.error('Error on searching job');

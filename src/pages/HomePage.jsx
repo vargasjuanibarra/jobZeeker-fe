@@ -1,13 +1,11 @@
 import React from "react";
 import Hero from "../components/Hero";
-import HomeCards from '../components/HomeCards';
 
 const HomePage = () => {
   return (
     <>
     <div className="h-screen flex items-center justify-center lg:max-w-[900px] xl:max-w-[1200px] mx-auto ">
-        <Hero title="The Job Board for Virtual Workers" subTitle="Make work happen"/>
-
+        <Hero subTitle="Make work happen"/>
     </div>
     </>
   )
