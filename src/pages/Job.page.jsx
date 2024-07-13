@@ -1,12 +1,13 @@
 // import React, { useEffect, useState } from "react";
-import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useLocation, useNavigate, useParams } from "react-router-dom";
 import { FaBriefcase, FaClock, FaDollarSign  } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import BackNavigationButton from "../components/BackNavigationButton";
 
-const Jobpage = ({ removeJob, userAdmin }) => {
+const Jobpage = ({ removeJob, userAdmin, user, accessToken }) => {
     const job = useLoaderData();
     const navigate = useNavigate();
+    const {id} = useParams();
     // const [job, setJob] = useState(null);
     // const [loading, setLoading] = useState(true);
     
@@ -39,6 +40,12 @@ const Jobpage = ({ removeJob, userAdmin }) => {
         navigate('/jobs');
     }
 
+    const loginRedirect = () => {
+        window.localStorage.setItem('lastVisitedLink', `jobs/${id}`)
+
+        navigate('/login')
+    }
+
   return (
     <div className="max-w-[1200px] mx-auto my-10 lg:my-20">
 
@@ -58,6 +65,7 @@ const Jobpage = ({ removeJob, userAdmin }) => {
                         {job.title}
                     </h1>
                     <button
+                    onClick={() =>!user ? loginRedirect() : ''}
                     to="/jobs"
                     className={"text-white text-sm bg-emerald-400 px-4 py-2 hover:bg-gray-400 hover:text-white rounded-full mb-4 font-semibold " + (userAdmin ? 'hidden' : 'block')}
                     >Apply for this Job</button>
@@ -94,22 +102,26 @@ const Jobpage = ({ removeJob, userAdmin }) => {
                     </h3>
                     <hr />
                     <div className="grid mt-4">
-                    <p className="mb-2">
-                    Company Name: <span className="font-semibold">{job.company.name}</span>
-                    </p>
-                    <p className="mb-2">
-                    Email: <span className="font-semibold">{job.company.contactEmail}</span>
-                    </p>
-                    <p className="mb-2">
-                    Phone: <span className="font-semibold">{job.company.contactPhone}</span>
-                    </p>
+                    <h3 className={"text-gray-500 " + (!user && !accessToken ? 'block' : 'hidden') }>
+                        <span onClick={loginRedirect} className="text-orange-500 cursor-pointer">Login</span> to see information.</h3>
+                    <div className={(user && accessToken ? 'block' : 'hidden')}>
+                        <p className="mb-2">
+                        Company Name: <span className="font-semibold">{job.company.name}</span>
+                        </p>
+                        <p className="mb-2">
+                        Email: <span className="font-semibold">{job.company.contactEmail}</span>
+                        </p>
+                        <p className="mb-2">
+                        Phone: <span className="font-semibold">{job.company.contactPhone}</span>
+                        </p>
+                    </div>
                     </div>
                 </div>
             </main>
 
             <aside>
                 <div className="bg-white p-6 rounded-lg shadow-md h-full">
-                <h3 className="text-md font-bold mb-6 text-gray-500">COMPANY INFO</h3>
+                <h3 className="text-md font-bold mb-6 text-gray-500 ">COMPANY INFO</h3>
 
                 <h2 className="text-2xl font-semibold">{job.company.name}</h2>
 
@@ -119,15 +131,18 @@ const Jobpage = ({ removeJob, userAdmin }) => {
 
                 <hr className="my-4" />
 
+                <h3 className={"text-gray-500 "  + (!user && !accessToken ? 'block' : 'hidden')}>
+                    <span onClick={loginRedirect} className="text-orange-500 cursor-pointer">Login</span> to see information</h3>
                 {/* <p className="text-md">EMAIL:</p> */}
+                <div className={(user && accessToken ? 'block' : 'hidden')}>
+                    <p className="my-2 bg-gray-100 p-2 font-bold text-wrap overflow-hidden">
+                        {job.company.contactEmail}
+                    </p>
 
-                <p className="my-2 bg-gray-100 p-2 font-bold text-wrap overflow-hidden">
-                    {job.company.contactEmail}
-                </p>
+                    {/* <h3 className="text-md">PHONE:</h3> */}
 
-                {/* <h3 className="text-md">PHONE:</h3> */}
-
-                <p className="my-2 bg-gray-100 p-2 font-bold">{job.company.contactPhone}</p>
+                    <p className="my-2 bg-gray-100 p-2 font-bold">{job.company.contactPhone}</p>
+                </div>
                 <div className={' mt-6 ' + (userAdmin ? 'block' : 'hidden')}>
                     <h3 className="text-xl font-bold mb-6">Manage Job</h3>
                     <Link

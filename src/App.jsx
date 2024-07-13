@@ -43,7 +43,7 @@ const router = createBrowserRouter(
       <Route path="/jobs" element={<Jobspage />} />
       <Route path="/talents" element={<Talentspage />} />
       <Route path="*" element={<Navigate to="/" />} />
-      <Route path="/jobs/:id" element={<JobPage removeJob={deleteJob} userAdmin={parseToJson(userAdmin)}/>} loader={jobLoader} />
+      <Route path="/jobs/:id" element={<JobPage removeJob={deleteJob} userAdmin={parseToJson(userAdmin)} user={user} accessToken={accessToken}/>} loader={jobLoader} />
       
 
       {(!parseToJson(user) && !parseToJson(accessToken)) && (
