@@ -65,7 +65,7 @@ const Jobpage = ({ removeJob, userAdmin, user, accessToken }) => {
                         {job.title}
                     </h1>
                     <button
-                    onClick={() =>!user ? loginRedirect() : ''}
+                    onClick={() =>!user ? loginRedirect() : navigate(`/apply/${id}`)}
                     to="/jobs"
                     className={"text-white text-sm bg-emerald-400 px-4 py-2 hover:bg-gray-400 hover:text-white rounded-full mb-4 font-semibold " + (userAdmin ? 'hidden' : 'block')}
                     >Apply for this Job</button>
@@ -147,11 +147,11 @@ const Jobpage = ({ removeJob, userAdmin, user, accessToken }) => {
                     <h3 className="text-xl font-bold mb-6">Manage Job</h3>
                     <Link
                         to={`/edit-job/${job.id}`}
-                        className="bg-amber-500 hover:bg-amber-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+                        className="bg-amber-500 hover:bg-amber-600 text-white text-center font-bold py-2 px-4 rounded-md w-full focus:outline-none focus:shadow-outline mt-4 block"
                         >Edit Job</Link
                     >
                     <button
-                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md w-full focus:outline-none focus:shadow-outline mt-4 block"
                         onClick={() => onDeleteJob(job.id)}
                     >
                         Delete Job

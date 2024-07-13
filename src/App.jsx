@@ -17,6 +17,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import UserProfile from "./pages/UserProfile";
 import { parseToJson } from "./utils/parseJSON.utils";
+import Apply from "./pages/Apply";
 
 const App = () => {
   const accessToken = window.localStorage.getItem('accessToken');
@@ -63,6 +64,8 @@ const router = createBrowserRouter(
           <>
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/" element={<Navigate to="/profile" />} />
+          <Route path="/apply/:id" element={<Apply to="/profile" />} loader={jobLoader}/>
+          
 
         </>
       ) : (
