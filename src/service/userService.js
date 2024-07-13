@@ -37,6 +37,22 @@ class UserService {
             console.error('Error on logging in', error)
         }
     }
+
+    async registerUser(user) {
+        try {
+            const response = await this.httpClient.post(`${USER_URL}/register`, user);
+            const data = await response.json();
+            console.log('data', data);
+            if (response.ok) {
+                window.localStorage.setItem('user', JSON.stringify(data));
+                window.localStorage.setItem('userAdmin', JSON.stringify(data.isAdmin));
+                window.localStorage.setItem('accessToken', JSON.stringify(data.token));
+                toast.success('You are logged in');
+            }
+        } catch (error) {
+            console.error('Error on registering', error)
+        }
+    }
 }
 
 export default UserService
