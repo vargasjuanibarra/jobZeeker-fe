@@ -19,7 +19,7 @@ const Talentspage = () => {
           const jobs = await jobService.getjobs(apiUrl)
           setJobs(jobs);
         } catch (error) {
-          console.log('Error fetching data', error)
+          console.error('Error fetching data', error)
         } finally {
           setLoading(false);
         }

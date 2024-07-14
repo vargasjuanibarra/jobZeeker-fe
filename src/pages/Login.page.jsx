@@ -21,10 +21,11 @@ const Loginpage = () => {
       await userService.loginUser(userCredentials)
       const userAdmin = window.localStorage.getItem('userAdmin');
       const lastVisitedLink = window.localStorage.getItem('lastVisitedLink')
+      const user = parseToJson(window.localStorage.getItem('user'));
       if (lastVisitedLink) {
         navigateWindowLocation(lastVisitedLink)
       } else {
-        parseToJson(userAdmin) ? navigateWindowLocation('/admin-dashboard') : navigateWindowLocation('/profile');
+        parseToJson(userAdmin) ? navigateWindowLocation('/admin-dashboard') : navigateWindowLocation(`/profile/${user.id}`);
       }
   }
 

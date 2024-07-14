@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, useParams, Navigate } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
 import Mainlayout from './layouts/Main.layout'
@@ -23,6 +23,8 @@ const App = () => {
   const accessToken = window.localStorage.getItem('accessToken');
   const user = window.localStorage.getItem('user');
   const userAdmin = window.localStorage.getItem('userAdmin');
+
+  const userObj = parseToJson(user)
 
   const jobService = new JobsService(FetchClient)
 
@@ -62,9 +64,9 @@ const router = createBrowserRouter(
         <Route path="/register" element={<Navigate to="/" />} />
         {!parseToJson(userAdmin) ? (
           <>
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/" element={<Navigate to="/profile" />} />
-          <Route path="/apply/:id" element={<Apply to="/profile" />} loader={jobLoader}/>
+          <Route path="/profile/:id" element={<UserProfile user={parseToJson(user)}/>} />
+          <Route path="/" element={<Navigate to={`/profile/${userObj && userObj.id}`} />} />
+          <Route path="/apply/:id" element={<Apply />} loader={jobLoader}/>
           
 
         </>

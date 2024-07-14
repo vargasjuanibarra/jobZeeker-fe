@@ -1,10 +1,11 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { parseToJson } from "../utils/parseJSON.utils";
 
 const ProtectedRoute = () => {
-    const user = window.localStorage.getItem('user');
+    const user = parseToJson(window.localStorage.getItem('user'));
     const accessToken = window.localStorage.getItem('accessToken');
-    return user && accessToken ? <Outlet /> : <Navigate to='/login' />
+    return user ? <Outlet /> : <Navigate to='/login' />
 
 };
 

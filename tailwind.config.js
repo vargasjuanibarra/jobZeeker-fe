@@ -10,6 +10,7 @@ export default {
     },
     gridTemplateColumns: {
       '70/30':'65% 33%',
+      '30/70':'33% 65%'
     }
   },
   plugins: [],

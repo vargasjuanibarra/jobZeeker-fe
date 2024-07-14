@@ -1,19 +1,21 @@
 import { toast } from "react-toastify";
+import { parseToJson } from "../utils/parseJSON.utils";
 
 export const USER_URL = '/api/user'
 
 class UserService {
-
+    
     constructor(httpClient) {
         this.httpClient = httpClient
     }
-
-    async getjobs(url) {
+    
+    async getUser(url) {
+        const user = parseToJson(window.localStorage.getItem('user'))
         try {
-            const response = await this.httpClient.get(url);
-            return response.json();
+            const response = await this.httpClient.get(`${USER_URL}/${user.id}`);
+            return await response.json();
         } catch (error) {
-            console.error('Error on fetching jobs', error)
+            console.error('Error on fetching user', error)
         }
     }
 
