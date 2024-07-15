@@ -9,10 +9,10 @@ class UserService {
         this.httpClient = httpClient
     }
     
-    async getUser(url) {
+    async getUser(userId) {
         const user = parseToJson(window.localStorage.getItem('user'))
         try {
-            const response = await this.httpClient.get(`${USER_URL}/${user.id}`);
+            const response = await this.httpClient.get(`${USER_URL}/${userId}`);
             return await response.json();
         } catch (error) {
             console.error('Error on fetching user', error)

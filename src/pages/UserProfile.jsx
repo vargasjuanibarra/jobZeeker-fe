@@ -6,6 +6,22 @@ import { FetchClient } from "../service/fetchClient";
 import { useLoaderData } from "react-router-dom";
 
 const UserProfile = ({user}) => {
+    const [userState, setUserState] = useState(null);
+
+    const userService = new UserService(FetchClient)
+    const fetchUserDetails = async () => {
+        try {
+            const userDetails = await userService.getUser(user.id)
+            console.log(userDetails);
+            setUserState(userDetails)
+        } catch (error) {
+            console.error('Error getting user details on User profile page')
+        }
+    }
+
+    useEffect(() => {
+        fetchUserDetails()
+    }, [])
   return (
     <>
         <section className="bg-stone-50 bg-opacity-75 px-4 py-2 lg:max-w-[1200px] mx-auto my-10 lg:my-20">
@@ -26,7 +42,7 @@ const UserProfile = ({user}) => {
                                     </div>
                                     <div className="p-4 text-center md:text-left">
                                         <div className="mb-4">
-                                            {/* <h3 className="text-xl font-bold my-1">{userState.fullName}</h3> */}
+                                            <h3 className="text-xl font-bold my-1">{userState && userState.fullName}</h3>
                                             <p className="text-gray-500 my-1">FullStack Software Developer</p>
                                             {/* <div className="bg-white rounded-full w-24">
                                                 <span className=" text-xs rounded-full bg-emerald-400 font-semibold">0</span>

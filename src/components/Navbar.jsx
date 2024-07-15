@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
 import { navigateWindowLocation, parseToJson } from "../utils/parseJSON.utils";
 
 const Navbar = () => {
-  const user = window.localStorage.getItem('user');
+  const user = parseToJson(window.localStorage.getItem('user'));
   const accessToken = window.localStorage.getItem('accessToken');
   const userAdmin = window.localStorage.getItem('userAdmin');
 
@@ -18,8 +18,27 @@ const Navbar = () => {
   const logoutUser = () => {
     console.log('logout');
     window.localStorage.clear();
+    setToggle(false);
     navigateWindowLocation("/login")
   }
+
+  const handleClickOutside = (event) => {
+    if (navRef.current && !navRef.current.contains(event.target)) {
+      setToggle(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleNavLinkClick = () => {
+    setToggle(false);
+  };
 
   return (
     <>
@@ -78,29 +97,39 @@ const Navbar = () => {
       </div>
       <div className={'absolute right-0 border border-gray-200 w-64 md:hidden bg-white z-[50] ' + (toggle ? 'block' : 'hidden')}>
       <div className="grid grid-col">
-        <NavLink
+        {/* <NavLink
+          onClick={handleNavLinkClick}
           to="/"
           className={linkClass}
-          >Home</NavLink>
+          >Home</NavLink> */}
         <NavLink
+          onClick={handleNavLinkClick}
           to="/jobs"
           className={linkClass}
           >Jobs
         </NavLink>
         <NavLink
+          onClick={handleNavLinkClick}
           to="/talents"
           className={linkClass}
           >Find Talents
         </NavLink>
         <NavLink
+          onClick={handleNavLinkClick}
           to="/login"
-          className={linkClass}
+          className={linkClass + (!user && !accessToken ? 'block' : 'hidden')}
           >Login</NavLink>
         <NavLink
+          onClick={handleNavLinkClick}
           to="/register"
-          className={linkClass}
+          className={linkClass + (!user && !accessToken ? 'block' : 'hidden')}
           >Sign up
         </NavLink>
+        <NavLink
+          to="/login"
+          className={linkClass + (user && accessToken ? 'block' : 'hidden')}
+          onClick={logoutUser}
+          >Logout</NavLink>
       </div>
     </div>
     </nav>
