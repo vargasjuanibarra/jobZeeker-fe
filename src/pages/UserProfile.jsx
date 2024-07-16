@@ -4,24 +4,11 @@ import UserService from "../service/userService";
 import { FetchClient } from "../service/fetchClient";
 import { navigateWindowLocation } from "../utils/parseJSON.utils";
 import Avatar from "../components/Avatar";
+import { useLoaderData } from "react-router-dom";
 
 const UserProfile = ({user}) => {
-    const [userState, setUserState] = useState(null);
+    const userData = useLoaderData()
 
-    const userService = new UserService(FetchClient)
-    const fetchUserDetails = async () => {
-        try {
-            const userDetails = await userService.getUser(user.id)
-            console.log(userDetails);
-            setUserState(userDetails)
-        } catch (error) {
-            console.error('Error getting user details on User profile page')
-        }
-    }
-
-    useEffect(() => {
-        fetchUserDetails()
-    }, [])
 
   return (
     <>
@@ -31,7 +18,7 @@ const UserProfile = ({user}) => {
                     <Avatar/>
                     <div className="p-4 text-center md:text-left">
                         <div className="mb-4">
-                            <h3 className="text-xl font-bold my-1">{user && userState.fullName}</h3>
+                            <h3 className="text-xl font-bold my-1">{userData && userData.fullName}</h3>
                             <p className="text-gray-500 my-1">FullStack Software Developer</p>
                         </div>
                     </div>
@@ -40,7 +27,7 @@ const UserProfile = ({user}) => {
             <div className="bg-white grid md:grid-cols-30/70">
                 <div className="mb-4 mt-8 px-4">
                     <button
-                    onClick={() => navigateWindowLocation(`/edit-profile/${user.id}`)}
+                    onClick={() => navigateWindowLocation(`/edit-profile/${userData.id}`)}
                     className="text-white text-xs sm:text-sm md:text-md bg-emerald-400 hover:bg-gray-600 rounded-sm px-3 py-2 md:py-3 mt-6 w-full"
                     >EDIT PROFILE</button>
                 </div>

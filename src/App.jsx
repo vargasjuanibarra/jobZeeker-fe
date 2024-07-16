@@ -7,7 +7,7 @@ import Jobspage from "./pages/Jobs.page";
 import JobPage from "./pages/Job.page";
 import AddJobPage from "./pages/AddJob.page";
 import EditJobpage from "./pages/EditJob.page";
-import { jobLoader } from "./data/loaderData";
+import { jobLoader, userLoader } from "./data/loaderData";
 import JobsService from "./service/jobsService";
 import { FetchClient } from "./service/fetchClient";
 import Loginpage from "./pages/Login.page";
@@ -65,8 +65,8 @@ const router = createBrowserRouter(
         <Route path="/register" element={<Navigate to="/" />} />
         {!parseToJson(userAdmin) ? (
           <>
-          <Route path="/profile/:id" element={<UserProfile user={parseToJson(user)}/>} />
-          <Route path="/edit-profile/:id" element={<EditProfile />} />
+          <Route path="/profile/:id" element={<UserProfile user={parseToJson(user)}/>} loader={userLoader}/>
+          <Route path="/edit-profile/:id" element={<EditProfile />} loader={userLoader}/>
           <Route path="/" element={<Navigate to={`/profile/${userObj && userObj.id}`} />} />
           <Route path="/apply/:id" element={<Apply />} loader={jobLoader}/>
           

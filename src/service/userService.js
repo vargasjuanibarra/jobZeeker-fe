@@ -10,12 +10,20 @@ class UserService {
     }
     
     async getUser(userId) {
-        const user = parseToJson(window.localStorage.getItem('user'))
         try {
             const response = await this.httpClient.get(`${USER_URL}/${userId}`);
             return await response.json();
         } catch (error) {
             console.error('Error on fetching user', error)
+        }
+    }
+
+    async updateUser(user) {
+        try {
+            const response = await this.httpClient.put(`${USER_URL}/${user.id}`, user)
+            return await response.json();
+        } catch (error) {
+            console.error('Error on updating user details')
         }
     }
 
