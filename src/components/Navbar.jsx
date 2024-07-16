@@ -6,7 +6,7 @@ import { navigateWindowLocation, parseToJson } from "../utils/parseJSON.utils";
 const Navbar = () => {
   const user = parseToJson(window.localStorage.getItem('user'));
   const accessToken = window.localStorage.getItem('accessToken');
-  const userAdmin = window.localStorage.getItem('userAdmin');
+  const userAdmin = parseToJson(window.localStorage.getItem('userAdmin'));
 
   const [toggle, setToggle] = useState(false);
   const linkClass = 'text-black px-3 py-2 hover:text-orange-500 md:rounded-md '
@@ -28,13 +28,13 @@ const Navbar = () => {
     }
   };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handleClickOutside);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   const handleNavLinkClick = () => {
     setToggle(false);
@@ -65,7 +65,7 @@ const Navbar = () => {
                   >Find Talents</NavLink>
                 <NavLink
                   to="/add-job"
-                  className={linkClass + (user && accessToken && parseToJson(userAdmin) ? 'block' : 'hidden')}
+                  className={linkClass + (user && accessToken && userAdmin ? 'block' : 'hidden')}
                   >Add Job</NavLink
                 >
                 <div

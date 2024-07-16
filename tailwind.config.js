@@ -9,6 +9,7 @@ export default {
       fontFamily: ['Roboto', 'sans-serif']
     },
     gridTemplateColumns: {
+      '50/50': '45% 45%',
       '70/30':'65% 33%',
       '30/70':'33% 65%'
     }

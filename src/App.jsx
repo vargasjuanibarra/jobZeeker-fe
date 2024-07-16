@@ -18,6 +18,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import UserProfile from "./pages/UserProfile";
 import { parseToJson } from "./utils/parseJSON.utils";
 import Apply from "./pages/Apply";
+import EditProfile from "./pages/EditProfile";
 
 const App = () => {
   const accessToken = window.localStorage.getItem('accessToken');
@@ -65,6 +66,7 @@ const router = createBrowserRouter(
         {!parseToJson(userAdmin) ? (
           <>
           <Route path="/profile/:id" element={<UserProfile user={parseToJson(user)}/>} />
+          <Route path="/edit-profile/:id" element={<EditProfile />} />
           <Route path="/" element={<Navigate to={`/profile/${userObj && userObj.id}`} />} />
           <Route path="/apply/:id" element={<Apply />} loader={jobLoader}/>
           
