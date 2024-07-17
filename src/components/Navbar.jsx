@@ -28,14 +28,6 @@ const Navbar = () => {
     }
   };
 
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
-
   const handleNavLinkClick = () => {
     setToggle(false);
   };
@@ -57,11 +49,11 @@ const Navbar = () => {
               <div className="flex space-x-2">
                 <NavLink
                   to="/jobs"
-                  className="text-white bg-emerald-400 px-6 py-2 hover:bg-gray-400 hover:text-white md:rounded-full"
+                  className={"text-white bg-emerald-400 px-6 py-2 hover:bg-gray-400 hover:text-white md:rounded-full " + (user && !userAdmin || !user ? 'block' : 'hidden')}
                   >Find Jobs</NavLink>
                 <NavLink
                   to="/talents"
-                  className="text-white bg-stone-400 px-6 py-2 hover:bg-gray-400 hover:text-white md:rounded-full"
+                  className={"text-white bg-stone-400 px-6 py-2 hover:bg-gray-400 hover:text-white md:rounded-full " + (user && userAdmin || !user ? 'block' : 'hidden')}
                   >Find Talents</NavLink>
                 <NavLink
                   to="/add-job"
@@ -105,13 +97,13 @@ const Navbar = () => {
         <NavLink
           onClick={handleNavLinkClick}
           to="/jobs"
-          className={linkClass}
-          >Jobs
+          className={linkClass + (user && !userAdmin || !user ? 'block' : 'hidden')}
+          >Find Jobs
         </NavLink>
         <NavLink
           onClick={handleNavLinkClick}
           to="/talents"
-          className={linkClass}
+          className={linkClass+ (user && userAdmin || !user ? 'block' : 'hidden')}
           >Find Talents
         </NavLink>
         <NavLink

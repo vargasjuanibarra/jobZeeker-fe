@@ -25,7 +25,7 @@ const Loginpage = () => {
       if (lastVisitedLink) {
         navigateWindowLocation(lastVisitedLink)
       } else {
-        parseToJson(userAdmin) ? navigateWindowLocation('/admin-dashboard') : navigateWindowLocation(`/profile/${user.id}`);
+        parseToJson(userAdmin) ? navigateWindowLocation(`/admin-dashboard/${user.id}`) : navigateWindowLocation(`/profile/${user.id}`);
       }
   }
 
