@@ -2,39 +2,40 @@ import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import BackNavigationButton from "../components/BackNavigationButton";
 import { FaBriefcase, FaClock, FaDollarSign } from "react-icons/fa";
+import { parseToJson } from "../utils/parseJSON.utils";
 
 const Apply = () => {
-    const job = useLoaderData();
+    const obj = useLoaderData();
     const {id} = useParams()
+
+    const user = parseToJson(window.localStorage.getItem('user'))
 
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
-    const [contactEmail, setContactEmail] = useState('');
-    const [contactPhone, setContactPhone] = useState('');
 
     return (
     <>
         <div className="max-w-[1200px] mx-auto my-10 lg:my-20">
-        <BackNavigationButton link={`/jobs/${id}`} btnLabel="Job Listing"/>
+        <BackNavigationButton link={!user.isAdmin ? `/jobs/${id}` : `/talent/${id}`} btnLabel={!user.isAdmin ? "Job Listing" : "Talent Profile"}/>
 
         <section className="bg-stone-50 bg-opacity-75">
         <div className="container m-auto py-10 px-6">
         <div className="bg-white p-6 rounded-lg shadow-md md:text-left mb-4">
                 <div className="flex flex-col flex-wrap sm:flex-row justify-center items-center mb-4">
                     <h1 className="text-2xl font-bold mb-4">
-                        {job.title}
+                        {obj.title || obj.userProfile.profession}
                     </h1>
                 </div>
                 <div>
                     <div className="flex justify-center">
                         <div className="flex items-center text-gray-500">
                             <FaBriefcase /> 
-                            <p className="ml-2 text-gray-500">{job.type}</p>
+                            <p className="ml-2 text-gray-500">{obj.type || obj.userProfile.jobType}</p>
                         </div>
                         <div className="border border-l mx-4"></div>
                         <div className=" flex items-center text-gray-500">
                             <FaDollarSign /> 
-                            <p className="ml-2 text-gray-500">{job.salary}</p>
+                            <p className="ml-2 text-gray-500">{obj.salary || obj.userProfile.salary}</p>
                         </div>
                         <div className="border border-l mx-4"></div>
                         <div className=" flex items-center text-gray-500">
@@ -72,44 +73,11 @@ const Apply = () => {
                 id="description"
                 name="description"
                 className="border rounded w-full py-2 px-3"
-                rows="4"
+                rows="10"
                 value={message}
                 onChange={(e) => (setMessage(e.target.value))}
               ></textarea>
             </div>
-
-            <div className="mb-4">
-              <label
-                htmlFor="contact_email"
-                className="text-xs block text-gray-500 font-bold mb-2"
-                >EMAIL</label
-              >
-              <input
-                type="email"
-                id="contact_email"
-                name="contact_email"
-                className="border rounded w-full py-2 px-3"
-                required
-                value={contactEmail}
-                onChange={(e) => (setContactEmail(e.target.value))}
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="contact_phone"
-                className="text-xs block text-gray-500 font-bold mb-2"
-                >PHONE</label
-              >
-              <input
-                type="tel"
-                id="contact_phone"
-                name="contact_phone"
-                className="border rounded w-full py-2 px-3"
-                value={contactPhone}
-                onChange={(e) => (setContactPhone(e.target.value))}
-              />
-            </div>
-
             <div>
               <button
                 className="bg-emerald-400 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded-md w-full focus:outline-none focus:shadow-outline"

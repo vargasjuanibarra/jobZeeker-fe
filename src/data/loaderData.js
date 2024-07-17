@@ -12,10 +12,9 @@ export const jobLoader = async ({ params }) => {
     } 
 }
 
-export const userLoader = async () => {
-    const user = parseToJson(window.localStorage.getItem('user'))
+export const userLoader = async ({ params }) => {
     try {
-        const res = await fetch(`${USER_URL}/${user && user.id}`);
+        const res = await fetch(`${USER_URL}/${params.id}`);
         const data = await res.json(); 
         return data;
     } catch (error) {

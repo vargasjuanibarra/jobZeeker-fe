@@ -17,8 +17,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import UserProfile from "./pages/UserProfile";
 import { parseToJson } from "./utils/parseJSON.utils";
-import Apply from "./pages/Apply";
+import SendEmailPage from "./pages/SendEmailPage";
 import EditProfile from "./pages/EditProfile";
+import TalentViewPage from "./pages/TalentViewPage";
 
 const App = () => {
   const accessToken = window.localStorage.getItem('accessToken');
@@ -68,7 +69,7 @@ const router = createBrowserRouter(
           <Route path="/profile/:id" element={<UserProfile user={parseToJson(user)}/>} loader={userLoader}/>
           <Route path="/edit-profile/:id" element={<EditProfile />} loader={userLoader}/>
           <Route path="/" element={<Navigate to={`/profile/${userObj && userObj.id}`} />} />
-          <Route path="/apply/:id" element={<Apply />} loader={jobLoader}/>
+          <Route path="/apply/:id" element={<SendEmailPage />} loader={jobLoader}/>
           
 
         </>
@@ -78,6 +79,9 @@ const router = createBrowserRouter(
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/add-job" element={<AddJobPage addJobSubmit={addJob}/>} />
           <Route path="/" element={<Navigate to="/admin-dashboard" />} />
+          <Route path="/talent/:id" element={<TalentViewPage />} />
+          <Route path="/email-talent/:id" element={<SendEmailPage />} loader={userLoader}/>
+
         </>
       )}
       </Route>

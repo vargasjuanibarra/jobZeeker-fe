@@ -3,10 +3,9 @@ import Spinner from "../components/Spinner";
 import { FetchClient } from "../service/fetchClient";
 import SearchInput from "../components/SearchInput";
 import Filters from "../components/Filters";
-import { FaMapMarker } from "react-icons/fa";
 import UserService, { USER_URL } from "../service/userService";
-import Avatar from "../components/Avatar";
 import NoResultsFound from "../components/NoResultsFound";
+import TalentCard from "../components/TalentCard";
 
 const Talentspage = () => {
     const [users, setUsers] = useState([]);
@@ -55,28 +54,7 @@ const Talentspage = () => {
                     <Filters selectedFilters={filters}/>
                     <div className="flex flex-col gap-4 w-full">
                         { users.length > 0 ? users.map((user) => (
-                            <div className="bg-white rounded-lg shadow-md relative p-4 hover:shadow-xl md:p-6" key={user?.id}>
-                                <div className="grid grid-col xs-md:justify-center mb-4 md:flex">
-                                    <Avatar />
-                                    <div className="p-4 text-center md:text-left">
-                                        <div className="mb-4">
-                                            <p className="text-gray-500">{user?.fullName}</p>
-                                            <h3 className="text-xl font-bold">{user?.userProfile?.profession}</h3>
-                                            <div className="my-2">
-                                                <div className="text-gray-500">
-                                                <p> NewTek Solutions  • <FaMapMarker className="text-orange-700 inline text-lg mb-1 mr-1"/>
-                                                <span className="text-orange-700">Boston, MA</span></p>
-                                            </div>
-                                            <p className="text-gray-500 mb-2">{user?.userProfile?.salary}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                <div className="mb-5 px-2">
-                                    <p className="text-gray-500 text-sm font-semibold mb-4">PROFILE DESCRIPTION</p>
-                                    {user?.userProfile?.profileDesc}
-                                </div>
-                            </div>
+                            <TalentCard user={user} key={user.id} className="cursor-pointer"/>
                         )): 
                         <NoResultsFound />
                         }
