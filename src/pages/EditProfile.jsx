@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import avatar from '../assets/images/default-avatar.webp'
-import { useLoaderData, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import UserService from "../service/userService";
 import { FetchClient } from "../service/fetchClient";
-import { FaDollarSign, FaImage } from "react-icons/fa";
+import { FaDollarSign } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { navigateWindowLocation } from "../utils/parseJSON.utils";
 import BackNavigationButton from "../components/BackNavigationButton";
@@ -11,14 +10,13 @@ import Avatar from "../components/Avatar";
 
 const EditProfile = () => {
     const user = useLoaderData()
-    const [fullName, setFullName] = useState(user && user.fullName || '');
-    const [dateOfBirth, setDateOfBirth] = useState(user && user.dateOfBirth || '');
-    const [education, setEducation] = useState(user && user.userProfile.education || '');
-    const [profession, setProfession] = useState(user && user.userProfile.profession || '');
-    const [jobType, setJobType] = useState(user && user.userProfile.jobType || '');
-    const [isActive, setIsActive] = useState(user && user.userProfile.jobType || '');
-    const [salary, setSalary] = useState(user && user.userProfile.salary || '');
-    const [profileDesc, setProfileDesc] = useState(user && user.userProfile.profileDesc || '');
+    const [fullName, setFullName] = useState(user?.fullName || '');
+    const [dateOfBirth, setDateOfBirth] = useState(user?.dateOfBirth  || '');
+    const [education, setEducation] = useState(user?.userProfile?.education  || '');
+    const [profession, setProfession] = useState(user?.userProfile?.profession  || '');
+    const [jobType, setJobType] = useState(user?.userProfile?.jobType || 'Full-Time');
+    const [salary, setSalary] = useState(user?.userProfile?.salary || '');
+    const [profileDesc, setProfileDesc] = useState(user?.userProfile?.profileDesc  || '');
     
     const userService = new UserService(FetchClient)
 
@@ -36,13 +34,10 @@ const EditProfile = () => {
             profileDesc
         }
 
-        console.log(updateDetails);
-
         try {
-            const userUpdated = await userService.updateUser(updateDetails);
-            console.log(userUpdated);
+            await userService.updateUser(updateDetails);
             toast.success('Successfully updated profile');
-            return navigateWindowLocation(`/profile/${user.id}`)
+            navigateWindowLocation(`/profile/${user.id}`);
             
         } catch (error) {
             console.error("Error updating profile:", error);
@@ -61,12 +56,12 @@ const EditProfile = () => {
                     <Avatar />
                 </div>
             </div>
-            <div className=" grid md:grid-cols-30/70 gap-6">
-                <div className="bg-white mb-4 mt-8 px-4 pt-4 pb-6 rounded-md shadow-xl">
+            <div className=" grid md:grid-cols-30/70 gap-4">
+                <div className="bg-white mb-4 my-4 md:mt-8 px-4 pt-4 pb-6 rounded-md shadow-xl">
                     <h3 className="font-semibold text-gray-400 mb-4">BASIC INFORMATION</h3>
                     <div>
                         <div className="relative">
-                            <div className="flex no items-center mb-4">
+                            <div className="flex items-center mb-4">
                                 <label htmlFor="fullName" className="whitespace-nowrap text-start text-xs block text-gray-400 font-semibold px-2 mr-4">
                                     FULL NAME
                                     </label>
@@ -112,13 +107,13 @@ const EditProfile = () => {
                         </div>
                     </div>
                 </div>
-                <div className="bg-white shadow-xl my-4 mb-4 mt-8 px-4 pt-4 pb-6 rounded-md">
+                <div className="bg-white shadow-xl my-4 mb-4 md:mt-8 px-4 pt-4 pb-6 rounded-md">
                     <div className="flex justify-between items-center mb-4">
                         <h3 className="font-semibold text-gray-400 ">OVERVIEW</h3>
                         <button
                         type="submit"
-                        className="text-white text-xs sm:text-sm md:text-md bg-emerald-400 hover:bg-gray-600 rounded-sm px-3 py-2"
-                        >SAVE</button>
+                        className="text-white text-xs sm:text-sm md:text-md bg-orange-400 hover:bg-gray-600 rounded-sm px-3 py-2"
+                        >UPDATE</button>
                     </div>
                     <div>
                         <div className="relative">
@@ -151,7 +146,7 @@ const EditProfile = () => {
                                         <option value="Gig">Gig</option>
                                     </select>
                             </div>
-                            <div className="flex items-center mb-4">
+                            {/* <div className="flex items-center mb-4">
                                 <label htmlFor="dropdown-isActive" className="whitespace-nowrap text-start text-xs block text-gray-400 font-semibold px-2 mr-4">PROFILE STATUS
                                 </label>
                                     <select 
@@ -164,7 +159,7 @@ const EditProfile = () => {
                                         <option value="option1">ACTIVE</option>
                                         <option value="option2">IN-ACTIVE</option>
                                     </select>
-                            </div>
+                            </div> */}
                             <div className="flex items-center justify-between mb-4">
                                 <label htmlFor="salary" className="text-start text-xs block text-gray-400 font-semibold px-2 mr-4">
                                     SALARY

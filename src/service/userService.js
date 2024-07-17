@@ -9,6 +9,14 @@ class UserService {
         this.httpClient = httpClient
     }
     
+    async getUsers() {
+        try {
+            const response = await this.httpClient.get(`${USER_URL}`);
+            return await response.json();
+        } catch (error) {
+            console.error('Error on fetching users', error)
+        }
+    }
     async getUser(userId) {
         try {
             const response = await this.httpClient.get(`${USER_URL}/${userId}`);

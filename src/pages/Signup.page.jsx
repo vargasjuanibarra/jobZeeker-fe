@@ -31,7 +31,8 @@ const Signuppage = () => {
     await userService.registerUser(newUser);
     toast.success('You are now logged in!')
     const userAdmin = window.localStorage.getItem('userAdmin');
-    parseToJson(userAdmin) ? navigateWindowLocation('/admin-dashboard') : navigateWindowLocation('/profile')
+    const user = parseToJson(window.localStorage.getItem('user'));
+    parseToJson(userAdmin) ? navigateWindowLocation('/admin-dashboard') : navigateWindowLocation(`/edit-profile/${user.id}`)
     
   }
 
