@@ -49,7 +49,7 @@ const JobListings = ({viewAllJobs=false}) => {
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-white shadow-lg px-4 py-8 rounded-lg">
-                <SearchInput jobSearchInput={jobSearch}/>
+                <SearchInput searchInput={jobSearch}/>
               </div>
             
             <div className="gap-3 md:flex flex-cols-2">

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const SearchInput = ({jobSearchInput}) => {
+const SearchInput = ({searchInput}) => {
   const [searchTerm, setSearchTerm] = useState('')
 
   const searchEvent = (keyword) => {
-    jobSearchInput(keyword)
+    searchInput(keyword)
   }
   return (
     <div className="flex flex-row items-center relative">

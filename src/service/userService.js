@@ -71,6 +71,18 @@ class UserService {
             console.error('Error on registering', error)
         }
     }
+
+    async usersSearch(searchTerm, jobTypes) {
+        try {
+            if(!searchTerm && !jobTypes) {
+                return this.getUsers();
+            }
+            const response = await this.httpClient.get(`${USER_URL}/search?searchTerm=${searchTerm}&jobTypes=${jobTypes}`);
+            return response.json();
+        } catch (error) {
+            console.error('Error on searching for users');
+        }
+    }
 }
 
 export default UserService
