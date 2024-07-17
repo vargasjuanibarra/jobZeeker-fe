@@ -1,5 +1,5 @@
 import React from "react";
-import { FaMapMarker } from "react-icons/fa";
+import { FaDollarSign, FaMapMarker } from "react-icons/fa";
 import Avatar from "../components/Avatar";
 import { Link } from "react-router-dom";
 
@@ -20,7 +20,7 @@ const TalentCard = ({ user }) => {
                             <p> NewTek Solutions  • <FaMapMarker className="text-orange-700 inline text-lg mb-1 mr-1"/>
                             <span className="text-orange-700">Boston, MA</span></p>
                         </div>
-                        <p className="text-gray-500 mb-2">{user?.userProfile?.salary}</p>
+                        <div className="text-gray-500 mb-2 flex items-center justify-center md:justify-start"><FaDollarSign /> <span>{user?.userProfile?.salary}</span></div>
                     </div>
                 </div>
             </div>

@@ -60,7 +60,7 @@ const TalentViewPage = () => {
                     <div className=" mb-4">
                       <Avatar show={false}/>
                       <h1 className="mt-4 py-2 text-md md:text-lg lg:text-2xl text-2xl font-bold">{user?.userProfile?.profession}</h1>
-                      <p className="text-md md:text-lg font-semibold">{user?.fullName}</p>
+                      <p className="text-md md:text-lg font-semibold text-center md:text-start">{user?.fullName}</p>
                     </div>
                     <button
                     onClick={() =>!getLocalUser ? loginRedirect() : navigate(`/email-talent/${id}`)}

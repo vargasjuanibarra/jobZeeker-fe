@@ -1,5 +1,5 @@
 // import React, { useEffect, useState } from "react";
-import { Link, useLoaderData, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { FaBriefcase, FaClock, FaDollarSign  } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import BackNavigationButton from "../components/BackNavigationButton";
@@ -8,24 +8,6 @@ const Jobpage = ({ removeJob, userAdmin, user, accessToken }) => {
     const job = useLoaderData();
     const navigate = useNavigate();
     const {id} = useParams();
-    // const [job, setJob] = useState(null);
-    // const [loading, setLoading] = useState(true);
-    
-    // useEffect(() => {
-    //     const fetchJob = async () => {
-    //         try {
-    //             console.log(id);
-    //             const res = await fetch(`/api/jobs/${id}`);
-    //             const data = await res.json();
-    //             setJob(data);
-    //         } catch (error) {
-    //             console.log('Error on fetching data', error)
-    //         } finally {
-    //             setLoading(false);
-    //         }
-    //     }
-    //     fetchJob();
-    // }, [])
 
     const onDeleteJob = (id) => {
         const confirm = window.confirm('Delete this item?');
@@ -55,7 +37,7 @@ const Jobpage = ({ removeJob, userAdmin, user, accessToken }) => {
 
         <section className="bg-stone-50 bg-opacity-75">
         <div className="container m-auto py-10 px-6">
-            <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
+            <div className="grid grid-col md:grid-cols-70/30 w-full gap-6">
             <main>
                 <div
                 className="bg-white p-6 rounded-lg shadow-md md:text-left"
@@ -96,7 +78,7 @@ const Jobpage = ({ removeJob, userAdmin, user, accessToken }) => {
 
                 </div>
 
-                <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+                <div className="bg-white p-6 rounded-lg shadow-md mt-6 ">
                     <h3 className="text-gray-500 text-lg font-bold mb-2">
                         ABOUT THE EMPLOYER
                     </h3>
