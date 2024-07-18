@@ -55,7 +55,7 @@ const JobListings = ({viewAllJobs=false}) => {
             <div className="gap-3 md:flex flex-cols-2">
               <Filters selectedFilters={filters}/>
               <div className="flex flex-col gap-4 w-full">
-                { jobs.length > 0 ? jobs.map((job) => (
+                { jobs?.length > 0 ? jobs.map((job) => (
                     <JobCard 
                         key={job.id}
                         id={job.id}

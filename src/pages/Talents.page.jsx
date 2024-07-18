@@ -53,7 +53,7 @@ const Talentspage = () => {
                 <div className="gap-3 md:flex flex-cols-2">
                     <Filters selectedFilters={filters}/>
                     <div className="flex flex-col gap-4 w-full">
-                        { users.length > 0 ? users.map((user) => (
+                        { users?.length > 0 ? users.map((user) => (
                             <TalentCard user={user} key={user.id} className="cursor-pointer"/>
                         )): 
                         <NoResultsFound />
