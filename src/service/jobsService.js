@@ -9,7 +9,7 @@ class JobsService {
     async getjobs(url) {
         try {
             const response = await this.httpClient.get(url);
-            return response.json();
+            return await response.json();
         } catch (error) {
             console.error('Error on fetching jobs', error)
         }
@@ -18,7 +18,7 @@ class JobsService {
     async createJob(job) {
         try {
             const response = await this.httpClient.post(JOBS_URL, job);
-            return response.json();
+            return await response.json();
         } catch (error) {
             console.error('Error on creating jobs', error)
         }
@@ -27,7 +27,7 @@ class JobsService {
     async updateJob(job) {
         try {
             const response = await this.httpClient.put(`${JOBS_URL}/${job.id}`, job);
-            return response.json();
+            return await response.json();
         } catch (error) {
             console.error('Error on updating job');
         }
@@ -36,7 +36,7 @@ class JobsService {
     async deleteJob(id) {
         try {
             const response = await this.httpClient.delete(`${JOBS_URL}/${id}`);
-            return response.json();
+            return await response.json();
         } catch (error) {
             console.error('Error on deleting job');
         }
@@ -48,7 +48,7 @@ class JobsService {
                 return this.getjobs(JOBS_URL);
             }
             const response = await this.httpClient.get(`${JOBS_URL}/search?searchTerm=${searchTerm}&jobTypes=${jobTypes}`);
-            return response.json();
+            return await response.json();
         } catch (error) {
             console.error('Error on searching job');
         }

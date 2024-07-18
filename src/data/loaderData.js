@@ -1,6 +1,5 @@
 import { JOBS_URL } from "../service/jobsService";
 import { USER_URL } from "../service/userService";
-import { parseToJson } from "../utils/parseJSON.utils";
 
 export const jobLoader = async ({ params }) => {
     try {

@@ -1,10 +1,6 @@
 export const FetchClient = {
     async get(url) {
-        return await fetch(url, {
-            headers: {  
-                Accept: "application/json"  
-              }  
-        })
+        return await fetch(url)
     },
 
     async post(url, body) {

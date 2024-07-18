@@ -1,6 +1,4 @@
 import { toast } from "react-toastify";
-import { parseToJson } from "../utils/parseJSON.utils";
-
 export const USER_URL = '/api/users'
 
 class UserService {
@@ -78,7 +76,7 @@ class UserService {
                 return this.getUsers();
             }
             const response = await this.httpClient.get(`${USER_URL}/search?searchTerm=${searchTerm}&jobTypes=${jobTypes}`);
-            return response.json();
+            return await response.json();
         } catch (error) {
             console.error('Error on searching for users');
         }

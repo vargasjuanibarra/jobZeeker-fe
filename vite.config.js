@@ -5,7 +5,7 @@ import { config } from 'dotenv'
 // Load environment variables from .env file
 config()
 
-const apiUrl = 'http://localhost:5000';
+const apiUrl = process.env.VITE_API_URL;
 
 if (!apiUrl) {
   throw new Error('VITE_API_URL is not defined in the environment variables');
