@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { parseToJson } from "../utils/parseJSON.utils";
 
-export const USER_URL = '/api/user'
+export const USER_URL = '/api/users'
 
 class UserService {
     
