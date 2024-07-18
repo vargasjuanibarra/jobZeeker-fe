@@ -1,4 +1,5 @@
-export const JOBS_URL = '/api/jobs'
+export const JOBS_URL = 'https://jobzeek-be.onrender.com/jobs'
+// export const JOBS_URL = '/api/jobs'
 
 class JobsService {
 

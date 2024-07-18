@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
-export const USER_URL = '/api/users'
+// export const USER_URL = '/api/users'
+export const USER_URL = 'https://jobzeek-be.onrender.com/users'
 
 class UserService {
     
