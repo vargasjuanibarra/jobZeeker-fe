@@ -10,7 +10,7 @@ const TalentCard = ({ user }) => {
     >
         <div className="bg-white rounded-lg shadow-md relative p-4 hover:shadow-xl md:p-6" key={user?.id}>
             <div className="grid grid-col xs-md:justify-center mb-4 md:flex">
-                <Avatar show={false}/>
+                {/* <Avatar show={false}/> */}
                 <div className="p-4 text-center md:text-left">
                     <div className="mb-4">
                         <p className="text-gray-500">{user?.fullName}</p>
