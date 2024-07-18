@@ -10,7 +10,8 @@ class UserService {
     async getUsers() {
         try {
             const response = await this.httpClient.get(`${USER_URL}`);
-            return await response.json();
+            const data = await response.json();
+            return data;
         } catch (error) {
             console.error('Error on fetching users', error)
         }
@@ -18,7 +19,8 @@ class UserService {
     async getUser(userId) {
         try {
             const response = await this.httpClient.get(`${USER_URL}/${userId}`);
-            return await response.json();
+            const data = await response.json();
+            return data;
         } catch (error) {
             console.error('Error on fetching user', error)
         }
@@ -27,7 +29,8 @@ class UserService {
     async updateUser(user) {
         try {
             const response = await this.httpClient.put(`${USER_URL}/${user.id}`, user)
-            return await response.json();
+            const data = await response.json();
+            return data;
         } catch (error) {
             console.error('Error on updating user details')
         }
@@ -76,7 +79,8 @@ class UserService {
                 return this.getUsers();
             }
             const response = await this.httpClient.get(`${USER_URL}/search?searchTerm=${searchTerm}&jobTypes=${jobTypes}`);
-            return await response.json();
+            const data = await response.json();
+            return data;
         } catch (error) {
             console.error('Error on searching for users');
         }
