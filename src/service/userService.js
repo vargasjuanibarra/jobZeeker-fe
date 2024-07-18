@@ -11,7 +11,6 @@ class UserService {
         console.log('USER_URL', USER_URL);
         try {
             const response = await fetch(`${USER_URL}`);
-            console.log('response', response);
             const data = await response.json();
             return data;
         } catch (error) {
