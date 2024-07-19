@@ -1,42 +1,22 @@
 import React, { useEffect, useState } from "react";
 import BackNavigationButton from "../components/BackNavigationButton";
 import { FaBriefcase, FaClock, FaDollarSign } from "react-icons/fa";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import UserService from "../service/userService";
 import { FetchClient } from "../service/fetchClient";
 import { toast } from "react-toastify";
 import Avatar from "../components/Avatar";
 import { parseToJson } from "../utils/parseJSON.utils";
 
-const TalentViewPage = () => {
-  const [user, setUser] = useState(null)
+const TalentViewPage = ({accessToken}) => {
+  const user = useLoaderData()
   const navigate = useNavigate();
   const getLocalUser = parseToJson(window.localStorage.getItem('user'));
 
   const { id } = useParams();
-  const userService = new UserService(FetchClient);
   
-
-  const getUser = async () => {
-    try {
-      const userData = await userService.getUser(id);
-      if (!userData) {
-        toast.error('User not found');
-        console.error('User not Found');
-      }
-      setUser(userData);
-    } catch (error) {
-      console.error('User not Found');
-    }
-  }
-
-  useEffect(() => {
-    getUser();
-
-  }, [])
-
   const loginRedirect = () => {
-    window.localStorage.setItem('lastVisitedLink', `jobs/${id}`)
+    window.localStorage.setItem('lastVisitedLink', `talent/${id}`)
 
     navigate('/login')
 }
@@ -98,7 +78,9 @@ const TalentViewPage = () => {
                         ABOUT THE JOB SEEKER
                     </h3>
                     <hr />
-                    <div className="grid mt-4">
+                    <h3 className={"text-gray-500 "  + (!accessToken ? 'block' : 'hidden')}>
+                    <span onClick={loginRedirect} className="text-orange-500 cursor-pointer">Login</span> to see information</h3>
+                    <div className={"grid mt-4 " + (accessToken ? 'block' : 'hidden')}>
                         <p className="mb-2">
                         Email: <span className="font-semibold">{user?.email}</span>
                         </p>

@@ -49,6 +49,7 @@ const router = createBrowserRouter(
       <Route path="/jobs" element={<Jobspage />} />
       <Route path="/talents" element={<Talentspage />} />
       <Route path="*" element={<Navigate to="/" />} />
+      <Route path="/talent/:id" element={<TalentViewPage userAdmin={parseToJson(userAdmin)} user={user} accessToken={accessToken}/>} loader={userLoader}/>
       <Route path="/jobs/:id" element={<JobPage removeJob={deleteJob} userAdmin={parseToJson(userAdmin)} user={user} accessToken={accessToken}/>} loader={jobLoader} />
       
 
@@ -81,7 +82,6 @@ const router = createBrowserRouter(
           <Route path="/admin-dashboard/:id" element={<AdminDashboard />} loader={userLoader} />
           <Route path="/add-job" element={<AddJobPage addJobSubmit={addJob}/>} />
           <Route path="/" element={<Navigate to={`/admin-dashboard/${userObj?.id}`} />} />
-          <Route path="/talent/:id" element={<TalentViewPage />} />
           <Route path="/email-talent/:id" element={<SendEmailPage />} loader={userLoader}/>
         </>
       )}

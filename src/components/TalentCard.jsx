@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const TalentCard = ({ user }) => {
   return (
     <Link
-    to={`/talent/${user.id}`}
+    to={`/talent/${user?.id}`}
     >
         <div className="bg-white rounded-lg shadow-md relative p-4 hover:shadow-xl md:p-6" key={user?.id}>
             <div className="grid grid-col xs-md:justify-center mb-4 md:flex">
