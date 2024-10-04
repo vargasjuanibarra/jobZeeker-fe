@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 // export const USER_URL = '/api/users'
-export const USER_URL = 'https://jobzeek-be.onrender.com/users'
+// export const USER_URL = 'https://jobzeek-be.onrender.com/users' // RENDER DEPLOYMENT
+export const USER_URL = 'https://job-zeek-be-rose.vercel.app/users' //VERCEL DEPLOYMENT
 
 class UserService {
     
