@@ -1,5 +1,5 @@
 // export const JOBS_URL = 'https://jobzeek-be.onrender.com/jobs' //RENDER DEPLOYMENT
-export const JOBS_URL = 'https://job-zeek-be-rose.vercel.app//jobs' //VERCEL DEPLOYMENT
+export const JOBS_URL = 'https://job-zeek-be-rose.vercel.app/jobs' //VERCEL DEPLOYMENT
 // export const JOBS_URL = '/api/jobs'
 
 class JobsService {
